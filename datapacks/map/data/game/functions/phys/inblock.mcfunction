@@ -2,7 +2,7 @@ tag @s remove in
 
 execute if block ~ ~ ~ air run tag @s add in
 
-execute as @s[tag=!in] run function game:detailin
+execute as @s[tag=!in] run function game:phys/detailin
 
 execute as @s[tag=soulsend] at @s run execute if block ~ ~ ~ barrier run tag @s add bar
 

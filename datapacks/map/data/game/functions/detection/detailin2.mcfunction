@@ -1,2 +1,2 @@
 tag @s remove in
-function game:detailin
+function game:phys/detailin
