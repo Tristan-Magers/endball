@@ -39,7 +39,10 @@ item replace entity @s[scores={knockbackActive=1}] armor.legs with minecraft:air
 item replace entity @s[scores={knockbackActive=1}] armor.feet with minecraft:air
 
 attribute @s[scores={knockbackActive=1..}] minecraft:generic.knockback_resistance base set 1.0
-attribute @s[scores={knockbackActive=..0}] minecraft:generic.knockback_resistance base set 0.0
+attribute @s[scores={knockbackActive=..0,knockbackLV=1}] minecraft:generic.knockback_resistance base set 0.07
+attribute @s[scores={knockbackActive=..0,knockbackLV=2}] minecraft:generic.knockback_resistance base set 0.14
+attribute @s[scores={knockbackActive=..0,knockbackLV=3}] minecraft:generic.knockback_resistance base set 0.21
+attribute @s[scores={knockbackActive=..0,knockbackLV=..0}] minecraft:generic.knockback_resistance base set 0.0
 
 attribute @s[scores={knockbackLV=0}] minecraft:generic.armor base set 0
 attribute @s[scores={knockbackLV=1}] minecraft:generic.armor base set 4

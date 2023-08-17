@@ -1,4 +1,4 @@
-attribute @s minecraft:generic.knockback_resistance base set 0.1
+attribute @s minecraft:generic.knockback_resistance base set 0.08
 #attribute @s minecraft:generic.knockback_resistance base set 0.48
 
 tag @s[nbt={OnGround:1b},tag=!grounded] add grounded
@@ -7,6 +7,7 @@ tag @s[nbt={OnGround:1b},tag=!grounded] add grounded
 execute as @s[scores={freeze=0}] at @s run data merge entity @s {Motion:[0.0,-0.05,0.0]}
 execute as @s[scores={freeze=0}] at @s run particle minecraft:cloud ~ ~.2 ~ .1 .1 .1 .2 60 force
 execute as @s[scores={freeze=1..}] at @s run particle minecraft:crit ~ ~.2 ~ .1 .2 .1 .1 1 force
+#execute as @s[scores={freeze=1..}] at @s run tag @s remove grounded
 
 effect give @s[scores={freeze=1..}] minecraft:invisibility 1 10 true
 effect clear @s[scores={freeze=..0}] minecraft:invisibility

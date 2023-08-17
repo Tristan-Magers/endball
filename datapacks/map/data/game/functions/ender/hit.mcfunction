@@ -5,8 +5,9 @@ execute as @s[tag=ender] unless entity @e[type=minecraft:ender_pearl,scores={ID=
 effect give @p minecraft:levitation 1 13 true
 scoreboard players set @s noLev 6
 scoreboard players set @s noCol 5
-execute as @s[tag=ender,scores={batLV=..1}] at @s unless entity @e[type=minecraft:ender_pearl,scores={ID=0}] if entity @e[type=endermite,distance=..2,tag=!grounded,scores={freeze=..1}] run scoreboard players set @s ironHoe 1
-execute as @s[tag=ender,scores={batLV=2..}] at @s unless entity @e[type=minecraft:ender_pearl,scores={ID=0}] if entity @e[type=endermite,distance=..2,tag=!grounded,scores={freeze=..1}] run scoreboard players set @s netherHoe 1
+execute as @s[tag=ender] at @s unless entity @e[type=minecraft:ender_pearl,scores={ID=0}] if entity @e[type=endermite,distance=..2,tag=!grounded,scores={freeze=..1}] run effect clear @p minecraft:levitation
+execute as @s[tag=ender] at @s unless entity @e[type=minecraft:ender_pearl,scores={ID=0}] if entity @e[type=endermite,distance=..2,tag=!grounded,scores={freeze=..1}] run effect give @p minecraft:levitation 1 0 true
+execute as @s[tag=ender] at @s unless entity @e[type=minecraft:ender_pearl,scores={ID=0}] if entity @e[type=endermite,distance=..2,tag=!grounded,scores={freeze=..1}] run scoreboard players set @s noLev 3
 function game:player/getdir
 function game:player/wallmove
 tag @s remove ender
