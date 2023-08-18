@@ -9,7 +9,7 @@ execute as @e[type=minecraft:endermite] at @s run scoreboard players add .enderc
 
 scoreboard players operation .maxender .data = .playercount .data
 scoreboard players operation .maxender .data /= .2 .data
-scoreboard players add .maxender .data 1
+execute if score .playercount .data matches 1.. if score .players.red .data = .players.blue .data run scoreboard players add .maxender .data 1
 
 execute if score .maxender .data > .endercount .data run scoreboard players add .newender .data 1
 

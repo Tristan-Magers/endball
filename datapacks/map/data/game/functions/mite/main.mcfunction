@@ -1,4 +1,4 @@
-attribute @s minecraft:generic.knockback_resistance base set 0.08
+attribute @s minecraft:generic.knockback_resistance base set 0.1
 #attribute @s minecraft:generic.knockback_resistance base set 0.48
 
 tag @s[nbt={OnGround:1b},tag=!grounded] add grounded
@@ -17,7 +17,7 @@ execute as @s[scores={freeze=1..}] at @s run data merge entity @s {Invulnerable:
 
 # statuses
 data merge entity @s {Lifetime:1}
-effect give @s minecraft:resistance 999999 10 true
+effect give @s minecraft:resistance 999999 3 true
 effect give @s minecraft:instant_health 999999 10 true
 effect give @s minecraft:slow_falling 999999 10 true
 
@@ -50,10 +50,12 @@ execute store result entity @s[scores={yMot=10..},tag=downfall] Motion[1] double
 tag @s[scores={yMot=10..},tag=downfall] remove downfall
 
 # double smashed
+execute as @s[tag=smashed2] at @s run playsound minecraft:item.shield.block master @a ~ ~ ~ 1 0.5
+execute as @s[tag=smashed2] at @s run particle minecraft:campfire_cosy_smoke ~ ~0.3 ~ 0.3 0.3 0.3 0.1 10 force
 tag @s[tag=smashed2] remove grounded
 
 scoreboard players set @s[tag=smashed2] xMot 0
-scoreboard players set @s[tag=smashed2] yMot 1000
+scoreboard players set @s[tag=smashed2] yMot 750
 scoreboard players set @s[tag=smashed2] zMot 0
 
 execute store result entity @s[tag=smashed2] Motion[0] double .001 run scoreboard players get @s xMot
@@ -105,11 +107,11 @@ scoreboard players set @s[tag=revmot2] office 0
 #execute as @s at @s run tp @s ~ ~ ~ ~-90 0
 
 # scoring
-tag @s[x=-16.0,y=-57,z=-40.5,dz=0.65,dx=1,dy=1.2] add win
-tag @s[x=-16.0,y=-57,z=-10.5,dz=-0.65,dx=1,dy=1.2] add win
+tag @s[x=-16.2,y=-57,z=-40.3,dz=0.65,dx=1.4,dy=1.1] add win
+tag @s[x=-16.2,y=-57,z=-10.7,dz=-0.65,dx=1.4,dy=1.1] add win
 
-execute as @s[x=-16.0,y=-57,z=-40.5,dz=0.65,dx=1,dy=1.2] run scoreboard players add Blue score 1
-execute as @s[x=-16.0,y=-57,z=-10.5,dz=-0.65,dx=1,dy=1.2] run scoreboard players add Red score 1
+execute as @s[x=-16.2,y=-57,z=-40.3,dz=0.65,dx=1.4,dy=1.1] run scoreboard players add Blue score 1
+execute as @s[x=-16.2,y=-57,z=-10.7,dz=-0.65,dx=1.4,dy=1.1] run scoreboard players add Red score 1
 
 execute as @s[tag=win] if score Red score < .maxscore .data if score Blue score < .maxscore .data run execute as @s[tag=win] positioned -15.0 -55 -25.0 run function game:game/start2
 
@@ -122,5 +124,7 @@ execute as @s[tag=win] at @s run effect give @a[tag=ingame] speed 2 4 true
 
 execute as @s[tag=win] at @s run playsound minecraft:entity.zombie_villager.cure master @a ~ ~ ~ 1 2
 execute as @s[tag=win] at @s run playsound minecraft:item.trident.thunder master @a ~ ~ ~ 0.2 2
+
+scoreboard players remove @s[scores={smashInvul=0..}] smashInvul 1
 
 kill @s[tag=win]

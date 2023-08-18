@@ -4,6 +4,18 @@ execute at @s if block ~ ~ ~0.3 minecraft:light_blue_terracotta run tp @s ~ ~ ~-
 execute at @s if block ~ ~ ~-0.3 minecraft:light_blue_terracotta run tp @s ~ ~ ~0.5
 execute at @s if block ~ ~1.6 ~ minecraft:barrier run tp @s ~ ~-1.6 ~
 
+#
+scoreboard players set @s[scores={clickPause=..0}] clickPauseDelay 5
+scoreboard players remove @s[scores={clickPause=1..,click=..0}] clickPauseDelay 1
+scoreboard players set @s[scores={clickPause=1..,clickPauseDelay=..0,click=..0}] clickPause 0
+scoreboard players set @s[scores={clickPause=1..,click=1..}] clickPauseDelay 5
+scoreboard players set @s[scores={clickPause=1..}] click 0
+scoreboard players remove @s clickPause 1
+
+#
+attribute @s minecraft:generic.attack_speed base set 1000
+attribute @s minecraft:generic.attack_damage base set 10
+
 # lev while offstage
 effect give @s[y=-59,dy=-100,gamemode=adventure] levitation 1 7
 
@@ -60,10 +72,22 @@ item replace entity @s[scores={bedcharge=320}] hotbar.2 with minecraft:yellow_be
 function game:player/shift
 
 # bat use
+execute as @s[scores={click=0},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}},tag=charge_buffer] at @s run function game:player/charge
+execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] at @s run function game:player/charge
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:netherite_hoe"}}] at @s run function game:smash/hit
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:stone_hoe"}}] at @s run function game:smash/hit
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:iron_hoe"}}] at @s run function game:smash/hit
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:golden_hoe"}}] at @s run function game:smash/hit
+
+scoreboard players remove @s chargeDelay 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..}] damage 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..10}] woodHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=11..15}] stoneHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=16..20}] ironHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=21..}] netherHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1}] chargeLV 0
+title @s[scores={chargeDelay=-1,batLV=..1}] actionbar [{"text":"","color":"gray"},{"text":"","color":"dark_gray"}]
+execute unless entity @s[scores={chargeDelay=0..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] run tag @s remove charge_buffer
 
 # bed use
 function game:player/usebed
@@ -79,11 +103,16 @@ scoreboard players set @s[scores={batIFrames=1..}] netherHoe 0
 scoreboard players remove @s[scores={batIFrames=1..}] batIFrames 1
 
 # bat level up
-function game:player/levelupbat
+scoreboard players set @s[scores={damage=..0}] woodHoe 0
+scoreboard players set @s[scores={damage=..0}] stoneHoe 0
+scoreboard players set @s[scores={damage=..0}] ironHoe 0
+scoreboard players set @s[scores={damage=..0}] netherHoe 0
+execute if entity @s[scores={damage=1..}] run function game:player/levelupbat
 
 tag @s remove degrade
 
 # bat timer actionbar
+execute as @s[scores={chargeLV=1..}] at @s run function game:player/charge_timer
 execute as @s[scores={batLV=2..}] at @s run function game:player/battimer
 
 # leave game
@@ -91,3 +120,6 @@ tag @s[scores={potion=1..}] remove ingame
 team leave @s[scores={potion=1..}]
 kill @s[scores={potion=1..}]
 scoreboard players set @s potion 0
+
+#
+scoreboard players set @s damage 0

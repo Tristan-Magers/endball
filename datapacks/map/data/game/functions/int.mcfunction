@@ -34,6 +34,8 @@ scoreboard objectives add endThrow minecraft.used:minecraft.ender_pearl
 
 scoreboard objectives add click minecraft.used:minecraft.carrot_on_a_stick
 
+scoreboard objectives add smashInvul dummy
+
 scoreboard objectives add woodHoe minecraft.used:minecraft.wooden_hoe
 scoreboard objectives add stoneHoe minecraft.used:minecraft.stone_hoe
 scoreboard objectives add ironHoe minecraft.used:minecraft.iron_hoe
@@ -54,6 +56,14 @@ scoreboard objectives add enderC dummy
 scoreboard objectives add shift minecraft.custom:minecraft.sneak_time
 scoreboard objectives add sneakT dummy
 scoreboard objectives add sneakCool dummy
+
+scoreboard objectives add damage minecraft.custom:minecraft.damage_dealt
+
+scoreboard objectives add chargeDelay dummy
+scoreboard objectives add chargeLV dummy
+
+scoreboard objectives add clickPause dummy
+scoreboard objectives add clickPauseDelay dummy
 
 scoreboard objectives add knockbackLV dummy
 scoreboard objectives add knockbackCool dummy

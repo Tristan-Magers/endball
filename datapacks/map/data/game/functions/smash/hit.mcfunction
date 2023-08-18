@@ -6,6 +6,8 @@ execute as @s[tag=shifttick] at @s run tag @s add noscharge
 execute as @s[tag=!shifttick] at @s run function game:smash/check
 execute as @s[tag=shifttick] at @s run function game:smash/check2
 
+tag @e[scores={smashInvul=1..2}] remove move
+
 # give hit particles if needed
 execute as @s[nbt={SelectedItem:{id:"minecraft:netherite_hoe"}}] at @s run scoreboard players set @e[tag=move] greenPart 12
 execute as @s[nbt={SelectedItem:{id:"minecraft:golden_hoe"}}] at @s run scoreboard players set @e[tag=move] flamePart 16
@@ -82,6 +84,8 @@ clear @s golden_hoe
 item replace entity @s hotbar.0 with wooden_hoe{display:{Name:'{"text":" ","italic":false}'},Unbreakable:1b}
 
 # reset ball tags
+scoreboard players set @e[tag=move] smashInvul 3
+
 tag @e remove move
 tag @e remove move2
 

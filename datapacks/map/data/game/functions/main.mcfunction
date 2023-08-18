@@ -1,4 +1,5 @@
 effect give @a minecraft:resistance 999999 3 true
+effect give @a minecraft:instant_health 999999 3 true
 effect give @a minecraft:jump_boost 999999 0 true
 effect give @a[gamemode=adventure] saturation 999999 5 true
 effect give @a[gamemode=adventure,tag=!ingame] weakness 3 5 true

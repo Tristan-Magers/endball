@@ -29,3 +29,7 @@ scoreboard players set @s[scores={netherHoe=1..}] batCool 30
 scoreboard players set @s[scores={netherHoe=1..}] batIFrames 7
 scoreboard players set @s[scores={netherHoe=1..}] batLV 5
 scoreboard players set @s netherHoe 0
+
+scoreboard players set @s chargeDelay -10
+scoreboard players set @s chargeLV 0
+tag @s remove charge_buffer
