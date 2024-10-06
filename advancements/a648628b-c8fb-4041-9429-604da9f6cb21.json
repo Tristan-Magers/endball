@@ -25,8 +25,8 @@
   },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
-      "minecraft:slime": "2021-12-21 18:42:15 -0700",
-      "minecraft:endermite": "2021-12-21 14:08:51 -0700"
+      "minecraft:endermite": "2021-12-21 14:08:51 -0700",
+      "minecraft:slime": "2021-12-21 18:42:15 -0700"
     },
     "done": false
   },
@@ -720,5 +720,17 @@
     },
     "done": true
   },
-  "DataVersion": 3465
+  "minecraft:recipes/building_blocks/jack_o_lantern": {
+    "criteria": {
+      "has_carved_pumpkin": "2023-08-25 11:29:37 -0600"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/pumpkin_pie": {
+    "criteria": {
+      "has_carved_pumpkin": "2023-08-25 11:29:37 -0600"
+    },
+    "done": true
+  },
+  "DataVersion": 3955
 }

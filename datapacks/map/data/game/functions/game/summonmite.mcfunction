@@ -1,2 +1,0 @@
-summon endermite ~ ~ ~ {Attributes:[{Name:generic.follow_range,Base:0},{Name:generic.movement_speed,Base:0},{Name:generic.attack_damage,Base:0}]}
-execute as @e[type=endermite] at @s run tp @s ~ ~ ~ 90 0
