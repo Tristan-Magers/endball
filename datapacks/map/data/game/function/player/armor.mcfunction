@@ -10,6 +10,10 @@ scoreboard players set @s[scores={knockbackActive=0}] knockbackLV 0
 scoreboard players set @s[scores={knockbackActive=0}] knockbackCool 0
 
 execute store result score @s hurt run data get entity @s HurtTime 1
+execute as @s[scores={hurt=10,knockbackLV=..3,chargeLV=1..}] at @s run playsound minecraft:entity.breeze.hurt master @a ~ ~ ~ 0.7 2
+title @s[scores={hurt=10,knockbackLV=..3,chargeLV=1..}] actionbar [{"text":"","color":"gray"}]
+scoreboard players set @s[scores={hurt=10,knockbackLV=..3}] chargeLV 0
+scoreboard players set @s[scores={hurt=10,knockbackLV=..3}] chargeDelay 20
 scoreboard players add @s[scores={hurt=10,knockbackLV=..3}] knockbackCool 55
 scoreboard players add @s[scores={hurt=10,knockbackLV=..3}] knockbackLV 1
 
@@ -20,15 +24,19 @@ item replace entity @s[scores={hurt=10,knockbackLV=1}] armor.feet with minecraft
 scoreboard players set @s[scores={knockbackActive=-1,knockbackLV=4}] knockbackCool 120
 scoreboard players set @s[scores={knockbackActive=-1,knockbackLV=4}] knockbackActive 70
 
-execute as @s[scores={knockbackActive=70}] at @s run playsound minecraft:block.anvil.land master @a ~ ~ ~ 0.3 0
-execute as @s[scores={knockbackActive=70}] at @s run playsound minecraft:block.anvil.land master @a ~ ~ ~ 0.5 1.4
+execute as @s[scores={knockbackActive=70},tag=!goal] at @s run playsound minecraft:block.anvil.land master @a ~ ~ ~ 0.3 0
+execute as @s[scores={knockbackActive=70},tag=!goal] at @s run playsound minecraft:block.anvil.land master @a ~ ~ ~ 0.5 1.4
 
-effect give @s[scores={knockbackActive=70}] minecraft:speed 3 1 true
-effect give @s[scores={knockbackActive=70}] minecraft:blindness 1
+effect give @s[scores={knockbackActive=70},tag=!goal] minecraft:speed 3 1 true
+effect give @s[scores={knockbackActive=70},tag=!goal] minecraft:blindness 1
 
 item replace entity @s[scores={knockbackActive=70}] armor.chest with minecraft:netherite_chestplate[unbreakable={}]
 item replace entity @s[scores={knockbackActive=70}] armor.legs with minecraft:netherite_leggings[unbreakable={}]
 item replace entity @s[scores={knockbackActive=70}] armor.feet with minecraft:netherite_boots[unbreakable={}]
+
+scoreboard players set @s[tag=goal] knockbackActive 40
+
+tag @s remove goal
 
 item replace entity @s[scores={knockbackCool=1}] armor.chest with minecraft:air
 item replace entity @s[scores={knockbackCool=1}] armor.legs with minecraft:air

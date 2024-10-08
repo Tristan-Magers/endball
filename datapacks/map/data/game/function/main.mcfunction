@@ -14,6 +14,10 @@ execute as @a[gamemode=spectator,scores={shift=1..}] run gamemode adventure
 execute as @e[tag=specmark] at @s run function game:spec/specmark
 execute as @a[gamemode=spectator] run spectate @e[tag=specmark,limit=1] @s
 
+#
+scoreboard players set @a[scores={smash_delay=1..}] click 0
+scoreboard players remove @a[scores={smash_delay=1..}] smash_delay 1
+
 # pearl explosion
 tp @e[type=slime] ~ -1000 ~
 kill @e[type=fireball]
@@ -74,3 +78,6 @@ execute as @a[tag=!ingame] at @s if block ~ -40 ~ magenta_stained_glass run titl
 
 #
 scoreboard players set @a shift 0
+
+#
+kill @e[type=item]

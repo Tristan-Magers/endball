@@ -5,7 +5,7 @@ execute as @e[tag=det,distance=..3.1] at @s run tp @s ~ ~ ~ facing entity @p[tag
 execute as @e[tag=det,type=marker,distance=..3.1] at @s run tp @s ~ ~ ~ ~ 0
 execute as @e[tag=det,type=marker,distance=..3.1] at @s run function game:phys/getdir
 
-execute as @e[tag=det,type=marker,distance=..3.1] at @s run data merge entity @e[tag=move,limit=1,sort=nearest,distance=..1] {Motion:[0.0,0.65,0.0]}
+execute as @e[tag=det,type=marker,distance=..3.1] at @s run data merge entity @e[tag=move,limit=1,sort=nearest,distance=..1] {Motion:[0.0,0.6,0.0]}
 execute as @e[tag=det,type=marker,distance=..3.1] at @s run execute store result entity @e[tag=move,limit=1,sort=nearest,distance=..1] Motion[0] double -.004 run scoreboard players get @s xPos
 execute as @e[tag=det,type=marker,distance=..3.1] at @s run execute store result entity @e[tag=move,limit=1,sort=nearest,distance=..1] Motion[2] double -.004 run scoreboard players get @s zPos
 

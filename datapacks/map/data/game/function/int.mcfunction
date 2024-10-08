@@ -62,6 +62,8 @@ scoreboard objectives add damage minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add chargeDelay dummy
 scoreboard objectives add chargeLV dummy
 
+scoreboard objectives add smash_delay dummy
+
 scoreboard objectives add clickPause dummy
 scoreboard objectives add clickPauseDelay dummy
 
@@ -78,7 +80,9 @@ scoreboard objectives add noCol dummy
 
 scoreboard objectives add -1 dummy
 scoreboard players set .Num -1 -1
+scoreboard players set 100 .Num 100
 
+scoreboard objectives add .Num dummy
 scoreboard objectives add .data dummy
 scoreboard players set .maxscore .data 7
 scoreboard players set .maxscore .ratio 10000

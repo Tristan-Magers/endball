@@ -6,7 +6,9 @@ execute as @s[tag=shifttick] at @s run tag @s add noscharge
 execute as @s[tag=!shifttick] at @s run function game:smash/check
 execute as @s[tag=shifttick] at @s run function game:smash/check2
 
-tag @e[scores={smashInvul=1..2}] remove move
+execute as @e[scores={smashInvul=1..}] at @s run playsound minecraft:block.note_block.basedrum master @a ~ ~ ~ 1 0
+execute as @e[scores={smashInvul=1..}] at @s run playsound minecraft:block.note_block.didgeridoo master @a ~ ~ ~ 0.5 0.51
+tag @e[scores={smashInvul=1..}] remove move
 
 # give hit particles if needed
 execute as @s[nbt={SelectedItem:{id:"minecraft:netherite_hoe"}}] at @s run scoreboard players set @e[tag=move] greenPart 12

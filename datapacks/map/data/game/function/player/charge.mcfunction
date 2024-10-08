@@ -5,5 +5,5 @@ execute as @s[scores={chargeDelay=..0}] at @s run particle minecraft:cloud ~ ~0.
 scoreboard players add @s[scores={chargeDelay=..0}] chargeLV 1
 scoreboard players set @s[scores={chargeDelay=..0}] chargeDelay 4
 
-scoreboard players set @s[scores={chargeLV=17..}] clickPause 20
-scoreboard players set @s[scores={chargeLV=17..}] chargeDelay 0
+scoreboard players set @s[scores={chargeLV=21..}] clickPause 5
+scoreboard players set @s[scores={chargeLV=21..}] chargeDelay 0

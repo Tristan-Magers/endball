@@ -1,4 +1,4 @@
-scoreboard players remove @s[scores={batCool=-1..}] batCool 1
+scoreboard players remove @s[scores={batCool=-1..,smash_delay=..1}] batCool 1
 
 tag @s[scores={batCool=0}] add degrade
 

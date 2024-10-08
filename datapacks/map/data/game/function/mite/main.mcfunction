@@ -107,11 +107,14 @@ scoreboard players set @s[tag=revmot2] office 0
 #execute as @s at @s run tp @s ~ ~ ~ ~-90 0
 
 # scoring
-tag @s[x=-16.2,y=-57,z=-40.3,dz=0.65,dx=1.4,dy=1.1] add win
-tag @s[x=-16.2,y=-57,z=-10.7,dz=-0.65,dx=1.4,dy=1.1] add win
+tag @s[x=-16.2,y=-57,z=-40.0,dz=0.3,dx=1.4,dy=1.1] add win
+tag @s[x=-16.2,y=-57,z=-11.3,dz=0.3,dx=1.4,dy=1.1] add win
 
-execute as @s[x=-16.2,y=-57,z=-40.3,dz=0.65,dx=1.4,dy=1.1] run scoreboard players add Blue score 1
-execute as @s[x=-16.2,y=-57,z=-10.7,dz=-0.65,dx=1.4,dy=1.1] run scoreboard players add Red score 1
+execute as @s[x=-16.2,y=-57,z=-40.0,dz=0.3,dx=1.4,dy=1.1] run scoreboard players add Blue score 1
+execute as @s[x=-16.2,y=-57,z=-11.3,dz=0.3,dx=1.4,dy=1.1] run scoreboard players add Red score 1
+
+execute as @s[x=-16.2,y=-57,z=-40.0,dz=0.3,dx=1.4,dy=1.1] as @a[team=blue] at @s run playsound minecraft:entity.experience_orb.pickup master @s
+execute as @s[x=-16.2,y=-57,z=-11.3,dz=0.3,dx=1.4,dy=1.1] as @a[team=red] at @s run playsound minecraft:entity.experience_orb.pickup master @s
 
 execute as @s[tag=win] if score Red score < .maxscore .data if score Blue score < .maxscore .data run execute as @s[tag=win] positioned -15.0 -55 -25.0 run function game:game/start2
 
@@ -120,7 +123,17 @@ execute as @s unless entity @a[tag=ingame] run function game:end
 execute as @s[tag=win] if score Red score >= .maxscore .data run function game:end
 execute as @s[tag=win] if score Blue score >= .maxscore .data run function game:end
 
-execute as @s[tag=win] at @s run effect give @a[tag=ingame] speed 2 4 true
+execute as @s[tag=win] at @s run tag @a[tag=ingame] add goal
+execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] knockbackLV 4
+
+execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] chargeDelay 35
+execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] chargeLV 0
+
+#execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.chest with minecraft:netherite_chestplate[unbreakable={}]
+#execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.legs with minecraft:netherite_leggings[unbreakable={}]
+#execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.feet with minecraft:netherite_boots[unbreakable={}]
+
+execute as @s[tag=win] at @s run effect give @a[tag=ingame] speed 2 2 true
 
 execute as @s[tag=win] at @s run playsound minecraft:entity.zombie_villager.cure master @a ~ ~ ~ 1 2
 execute as @s[tag=win] at @s run playsound minecraft:item.trident.thunder master @a ~ ~ ~ 0.2 2
@@ -128,3 +141,4 @@ execute as @s[tag=win] at @s run playsound minecraft:item.trident.thunder master
 scoreboard players remove @s[scores={smashInvul=0..}] smashInvul 1
 
 kill @s[tag=win]
+

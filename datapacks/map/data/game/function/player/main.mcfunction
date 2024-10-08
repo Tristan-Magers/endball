@@ -84,13 +84,16 @@ execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:iron_hoe"}}] a
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:golden_hoe"}}] at @s run function game:smash/hit
 
 scoreboard players remove @s chargeDelay 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=5..}] damage 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=5..8}] woodHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=9..12}] stoneHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=13..16}] ironHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=17..}] netherHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..}] damage 1
+tag @s[scores={chargeDelay=..-1,chargeLV=6..}] add charged_bat
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..}] clickPause 5
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..10}] woodHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=11..15}] stoneHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=16..20}] ironHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=21..}] netherHoe 1
+#title @s[scores={chargeDelay=..-1,chargeLV=4..}] actionbar [{"text":"!! CHARGED !!","color":"white"},{"text":"","color":"dark_gray"}]
 scoreboard players set @s[scores={chargeDelay=..-1}] chargeLV 0
-title @s[scores={chargeDelay=-1,batLV=..1}] actionbar [{"text":"","color":"gray"},{"text":"","color":"dark_gray"}]
+#title @s[scores={chargeDelay=-1,batLV=..1}] actionbar [{"text":"","color":"gray"},{"text":"","color":"dark_gray"}]
 execute unless entity @s[scores={chargeDelay=0..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] run tag @s remove charge_buffer
 
 # bed use
@@ -116,8 +119,10 @@ execute if entity @s[scores={damage=1..}] run function game:player/levelupbat
 tag @s remove degrade
 
 # bat timer actionbar
+scoreboard players add @s smash_delay 0
+
 execute as @s[scores={chargeLV=1..}] at @s run function game:player/charge_timer
-execute as @s[scores={batLV=2..}] at @s run function game:player/battimer
+execute as @s[scores={batLV=2..,smash_delay=..0}] at @s run function game:player/battimer
 
 # leave game
 tag @s[scores={potion=1..}] remove ingame
