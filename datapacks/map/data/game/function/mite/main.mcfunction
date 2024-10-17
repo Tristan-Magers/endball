@@ -1,10 +1,12 @@
 attribute @s minecraft:generic.knockback_resistance base set 0.1
+attribute @s minecraft:generic.scale base set 1.1
+attribute @s minecraft:generic.explosion_knockback_resistance base set 0.092
 #attribute @s minecraft:generic.knockback_resistance base set 0.48
 
 tag @s[nbt={OnGround:1b},tag=!grounded] add grounded
 
 #fall
-execute as @s[scores={freeze=0}] at @s run data merge entity @s {Motion:[0.0,-0.05,0.0]}
+execute as @s[scores={freeze=0}] at @s run data merge entity @s {Motion:[0.0,-0.064,0.0]}
 execute as @s[scores={freeze=0}] at @s run particle minecraft:cloud ~ ~.2 ~ .1 .1 .1 .2 60 force
 execute as @s[scores={freeze=1..}] at @s run particle minecraft:crit ~ ~.2 ~ .1 .2 .1 .1 1 force
 #execute as @s[scores={freeze=1..}] at @s run tag @s remove grounded
@@ -88,14 +90,14 @@ tag @s remove revmot
 execute as @s[tag=grounded,tag=revmot2,scores={freeze=..0}] at @s run data merge entity @s {Invulnerable:0}
 execute as @s[tag=grounded,tag=!revmot2,scores={freeze=..0}] at @s run data merge entity @s {Invulnerable:1}
 
-execute store result entity @s[tag=!revmot2,tag=xWall] Motion[0] double .0017 run scoreboard players get @s xMot
-execute store result entity @s[tag=!revmot2,tag=zWall] Motion[2] double .0017 run scoreboard players get @s zMot
+execute store result entity @s[tag=!revmot2,tag=xWall] Motion[0] double .0018 run scoreboard players get @s xMot
+execute store result entity @s[tag=!revmot2,tag=zWall] Motion[2] double .0018 run scoreboard players get @s zMot
 
-execute store result entity @s[tag=!revmot2,tag=!xWall,tag=!zWall] Motion[0] double .0017 run scoreboard players get @s xMot
-execute store result entity @s[tag=!revmot2,tag=!xWall,tag=!zWall] Motion[2] double .0017 run scoreboard players get @s zMot
+execute store result entity @s[tag=!revmot2,tag=!xWall,tag=!zWall] Motion[0] double .0018 run scoreboard players get @s xMot
+execute store result entity @s[tag=!revmot2,tag=!xWall,tag=!zWall] Motion[2] double .0018 run scoreboard players get @s zMot
 
-execute store result entity @s[tag=!revmot2,scores={office=4..}] Motion[0] double .0017 run scoreboard players get @s xMot
-execute store result entity @s[tag=!revmot2,scores={office=4..}] Motion[2] double .0017 run scoreboard players get @s zMot
+execute store result entity @s[tag=!revmot2,scores={office=4..}] Motion[0] double .0018 run scoreboard players get @s xMot
+execute store result entity @s[tag=!revmot2,scores={office=4..}] Motion[2] double .0018 run scoreboard players get @s zMot
 
 tag @s[tag=revmot2] remove xWall
 tag @s[tag=revmot2] remove zWall
@@ -139,6 +141,8 @@ execute as @s[tag=win] at @s run playsound minecraft:entity.zombie_villager.cure
 execute as @s[tag=win] at @s run playsound minecraft:item.trident.thunder master @a ~ ~ ~ 0.2 2
 
 scoreboard players remove @s[scores={smashInvul=0..}] smashInvul 1
+
+tag @s remove smashed_hard
 
 kill @s[tag=win]
 

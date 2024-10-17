@@ -13,7 +13,7 @@ execute store result score @s hurt run data get entity @s HurtTime 1
 execute as @s[scores={hurt=10,knockbackLV=..3,chargeLV=1..}] at @s run playsound minecraft:entity.breeze.hurt master @a ~ ~ ~ 0.7 2
 title @s[scores={hurt=10,knockbackLV=..3,chargeLV=1..}] actionbar [{"text":"","color":"gray"}]
 scoreboard players set @s[scores={hurt=10,knockbackLV=..3}] chargeLV 0
-scoreboard players set @s[scores={hurt=10,knockbackLV=..3}] chargeDelay 20
+scoreboard players set @s[scores={hurt=10,knockbackLV=..3}] chargeDelay 15
 scoreboard players add @s[scores={hurt=10,knockbackLV=..3}] knockbackCool 55
 scoreboard players add @s[scores={hurt=10,knockbackLV=..3}] knockbackLV 1
 

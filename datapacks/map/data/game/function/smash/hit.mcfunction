@@ -6,8 +6,10 @@ execute as @s[tag=shifttick] at @s run tag @s add noscharge
 execute as @s[tag=!shifttick] at @s run function game:smash/check
 execute as @s[tag=shifttick] at @s run function game:smash/check2
 
-execute as @e[scores={smashInvul=1..}] at @s run playsound minecraft:block.note_block.basedrum master @a ~ ~ ~ 1 0
-execute as @e[scores={smashInvul=1..}] at @s run playsound minecraft:block.note_block.didgeridoo master @a ~ ~ ~ 0.5 0.51
+execute as @e[scores={smashInvul=1..},tag=move] at @s run playsound minecraft:block.note_block.basedrum master @a ~ ~ ~ 1 0
+execute as @e[scores={smashInvul=1..},tag=move] at @s run playsound minecraft:block.note_block.didgeridoo master @a ~ ~ ~ 0.5 0.51
+execute as @e[scores={smashInvul=1..},tag=move] at @s run playsound minecraft:item.shield.break master @a
+execute if entity @e[scores={smashInvul=1..},tag=move] at @s run tellraw @s {"text":"Late Hit","color":"gray"}
 tag @e[scores={smashInvul=1..}] remove move
 
 # give hit particles if needed
@@ -86,7 +88,7 @@ clear @s golden_hoe
 item replace entity @s hotbar.0 with wooden_hoe[item_name='{"text":" ","italic":false}',unbreakable={}]
 
 # reset ball tags
-scoreboard players set @e[tag=move] smashInvul 3
+scoreboard players set @e[tag=move,tag=smashed_hard] smashInvul 3
 
 tag @e remove move
 tag @e remove move2

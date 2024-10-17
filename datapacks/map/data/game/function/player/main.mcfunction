@@ -1,5 +1,11 @@
 #
-attribute @s minecraft:player.sneaking_speed base set 0.65
+attribute @s minecraft:generic.movement_speed base set 0.1
+attribute @s[scores={chargeLV=1..}] minecraft:generic.movement_speed base set 0.093
+attribute @s minecraft:player.entity_interaction_range base set 3.2
+attribute @s minecraft:generic.attack_knockback base set 0.05
+
+#
+attribute @s minecraft:player.sneaking_speed base set 0.64
 
 #
 execute at @s if block ~0.3 ~ ~ minecraft:light_blue_terracotta run tp @s ~-0.5 ~ ~
@@ -84,13 +90,13 @@ execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:iron_hoe"}}] a
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:golden_hoe"}}] at @s run function game:smash/hit
 
 scoreboard players remove @s chargeDelay 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..}] damage 1
-tag @s[scores={chargeDelay=..-1,chargeLV=6..}] add charged_bat
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..}] clickPause 5
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=6..10}] woodHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=11..15}] stoneHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=16..20}] ironHoe 1
-scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=21..}] netherHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=5..}] damage 1
+tag @s[scores={chargeDelay=..-1,chargeLV=5..}] add charged_bat
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=5..}] clickPause 5
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=5..9}] woodHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=10..14}] stoneHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=15..19}] ironHoe 1
+scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=20..}] netherHoe 1
 #title @s[scores={chargeDelay=..-1,chargeLV=4..}] actionbar [{"text":"!! CHARGED !!","color":"white"},{"text":"","color":"dark_gray"}]
 scoreboard players set @s[scores={chargeDelay=..-1}] chargeLV 0
 #title @s[scores={chargeDelay=-1,batLV=..1}] actionbar [{"text":"","color":"gray"},{"text":"","color":"dark_gray"}]

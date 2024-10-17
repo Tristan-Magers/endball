@@ -51,21 +51,22 @@ execute as @a[scores={noLev=0}] at @s run effect clear @s minecraft:levitation
 execute as @e[type=item] run data merge entity @s {PickupDelay:0}
 
 # join and spawn players
-execute as @a at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove join
-execute as @a at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove joinred
-execute as @a at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove joinblue
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove join
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove joinred
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ light_gray_stained_glass run tag @s remove joinblue
 
-execute as @a at @s if block ~ -40 ~ white_stained_glass run tag @s remove join
-execute as @a at @s if block ~ -40 ~ white_stained_glass run tag @s remove joinred
-execute as @a at @s if block ~ -40 ~ white_stained_glass run tag @s remove joinblue
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ white_stained_glass run tag @s remove join
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ white_stained_glass run tag @s remove joinred
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ white_stained_glass run tag @s remove joinblue
 
-execute as @a at @s if block ~ -40 ~ minecraft:blue_stained_glass run tag @s add joinblue
-execute as @a at @s if block ~ -40 ~ minecraft:cyan_stained_glass run tag @s add joinblue
-execute as @a at @s if block ~ -40 ~ minecraft:red_stained_glass run tag @s add joinred
-execute as @a at @s if block ~ -40 ~ minecraft:pink_stained_glass run tag @s add joinred
-execute as @a at @s if block ~ -40 ~ minecraft:purple_stained_glass run tag @s add join
-execute as @a at @s if block ~ -40 ~ minecraft:magenta_stained_glass run tag @s add join
-
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:blue_stained_glass run tag @s add joinblue
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:cyan_stained_glass run tag @s add joinblue
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:red_stained_glass run tag @s add joinred
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:pink_stained_glass run tag @s add joinred
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:purple_stained_glass run tag @s add join
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:magenta_stained_glass run tag @s add join
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:purple_stained_glass run tag @s remove joinblue
+execute as @a[gamemode=adventure] at @s if block ~ -40 ~ minecraft:magenta_stained_glass run tag @s remove joinred
 #
 execute as @a[tag=!ingame] at @s if block ~ -40 ~ light_gray_stained_glass run title @s actionbar [{"text":"UNJOINED"}]
 execute as @a[tag=!ingame] at @s if block ~ -40 ~ white_stained_glass run title @s actionbar [{"text":"UNJOINED"}]
@@ -75,6 +76,9 @@ execute as @a[tag=!ingame] at @s if block ~ -40 ~ blue_stained_glass run title @
 execute as @a[tag=!ingame] at @s if block ~ -40 ~ cyan_stained_glass run title @s actionbar [{"text":"Selected "},{"text":"Team Blue","color":"aqua"}]
 execute as @a[tag=!ingame] at @s if block ~ -40 ~ purple_stained_glass run title @s actionbar [{"text":"Selected "},{"text":"Random Team","color":"light_purple"}]
 execute as @a[tag=!ingame] at @s if block ~ -40 ~ magenta_stained_glass run title @s actionbar [{"text":"Selected "},{"text":"Random Team","color":"light_purple"}]
+
+tag @a[tag=joinred] remove join
+tag @a[tag=joinblue] remove join
 
 #
 scoreboard players set @a shift 0

@@ -1,5 +1,5 @@
 kill @e[type=minecraft:endermite]
-execute positioned -15.0 -51.0 -25.0 run function game:game/summonmite
+execute positioned -15.0 -52.2 -25.0 run function game:game/summonmite
 scoreboard players set @e[type=minecraft:endermite] freeze 60
 
 item replace entity @a hotbar.0 with wooden_hoe[item_name='{"text":" ","italic":false}',unbreakable={}]
