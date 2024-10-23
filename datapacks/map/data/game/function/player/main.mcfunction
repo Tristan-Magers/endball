@@ -3,7 +3,7 @@ attribute @s minecraft:movement_speed base set 0.1
 attribute @s[scores={chargeLV=1..}] minecraft:movement_speed base set 0.09
 attribute @s[scores={stunned=1..}] minecraft:movement_speed base set 0.075
 attribute @s minecraft:entity_interaction_range base set 3.2
-attribute @s minecraft:attack_knockback base set 0.0
+attribute @s minecraft:attack_knockback base set 0.06
 attribute @s minecraft:sneaking_speed base set 0.64
 
 scoreboard players remove @s[scores={stunned=0..}] stunned 1

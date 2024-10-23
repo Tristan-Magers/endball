@@ -3,8 +3,6 @@ item replace entity @a armor.chest with minecraft:air
 item replace entity @a armor.legs with minecraft:air
 item replace entity @a armor.feet with minecraft:air
 
-
-
 #
 scoreboard players set Blue score 0
 scoreboard players set Red score 0
