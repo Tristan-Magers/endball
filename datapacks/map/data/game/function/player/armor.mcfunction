@@ -30,7 +30,7 @@ execute as @s[scores={knockbackActive=70},tag=!goal] at @s run playsound minecra
 execute as @s[scores={knockbackActive=70},tag=!goal] at @s run execute on attacker run function game:player/get_stunned
 
 effect give @s[scores={knockbackActive=70},tag=!goal] minecraft:speed 3 1 true
-effect give @s[scores={knockbackActive=70},tag=!goal] minecraft:blindness 1
+#effect give @s[scores={knockbackActive=70},tag=!goal] minecraft:blindness 1
 
 item replace entity @s[scores={knockbackActive=70}] armor.chest with minecraft:netherite_chestplate[unbreakable={}]
 item replace entity @s[scores={knockbackActive=70}] armor.legs with minecraft:netherite_leggings[unbreakable={}]
