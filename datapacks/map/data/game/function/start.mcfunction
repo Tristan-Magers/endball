@@ -45,13 +45,18 @@ tag @a[team=blue] add ingame
 
 function game:game/start2
 
-item replace entity @a[team=red] hotbar.7 with minecraft:red_dye[item_name='{"text":"Red Team","italic":false,"color":"red"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
-item replace entity @a[team=blue] hotbar.7 with minecraft:blue_dye[item_name='{"text":"Blue Team","italic":false,"color":"aqua"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
-item replace entity @a hotbar.8 with minecraft:potion[item_name='{"text":"Leave Game","italic":false}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @a[team=red] hotbar.7 with minecraft:red_dye[item_name='{"text":"Red Team","italic":false,"color":"red"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @a[team=blue] hotbar.7 with minecraft:blue_dye[item_name='{"text":"Blue Team","italic":false,"color":"aqua"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @a hotbar.8 with minecraft:potion[item_name='{"text":"Leave Game","italic":false}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
 
 # adjust for differences in first ball
 clear @a black_bed
 scoreboard players set @a bedcharge 1000
+scoreboard players set @a knockbackActive 0
+scoreboard players set @a knockbackLV 0
+scoreboard players set @a sneakCool 80
+scoreboard players set @a stunned -1
+scoreboard players set @a bat_off -1
 
 scoreboard players set @e[type=minecraft:endermite] freeze 36
 

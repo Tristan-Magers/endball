@@ -64,6 +64,9 @@ scoreboard objectives add chargeLV dummy
 
 scoreboard objectives add smash_delay dummy
 
+scoreboard objectives add bat_off dummy
+scoreboard objectives add stunned dummy
+
 scoreboard objectives add clickPause dummy
 scoreboard objectives add clickPauseDelay dummy
 

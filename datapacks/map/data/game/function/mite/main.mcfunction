@@ -1,12 +1,12 @@
-attribute @s minecraft:generic.knockback_resistance base set 0.1
-attribute @s minecraft:generic.scale base set 1.1
-attribute @s minecraft:generic.explosion_knockback_resistance base set 0.092
-#attribute @s minecraft:generic.knockback_resistance base set 0.48
+attribute @s minecraft:knockback_resistance base set 0.1
+attribute @s minecraft:scale base set 1.1
+attribute @s minecraft:explosion_knockback_resistance base set 0.09
+#attribute @s minecraft:knockback_resistance base set 0.48
 
 tag @s[nbt={OnGround:1b},tag=!grounded] add grounded
 
 #fall
-execute as @s[scores={freeze=0}] at @s run data merge entity @s {Motion:[0.0,-0.064,0.0]}
+execute as @s[scores={freeze=0}] at @s run data merge entity @s {Motion:[0.0,-0.065,0.0]}
 execute as @s[scores={freeze=0}] at @s run particle minecraft:cloud ~ ~.2 ~ .1 .1 .1 .2 60 force
 execute as @s[scores={freeze=1..}] at @s run particle minecraft:crit ~ ~.2 ~ .1 .2 .1 .1 1 force
 #execute as @s[scores={freeze=1..}] at @s run tag @s remove grounded
@@ -131,11 +131,15 @@ execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] knockback
 execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] chargeDelay 35
 execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] chargeLV 0
 
+execute as @s[tag=win] at @s run scoreboard players set @a[tag=ingame] bat_off 45
+execute as @s[tag=win] at @s run clear @a[tag=ingame] wooden_hoe
+execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] hotbar.0 with minecraft:breeze_rod[item_name='{"text":" ","italic":false}',unbreakable={}]
+
 #execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.chest with minecraft:netherite_chestplate[unbreakable={}]
 #execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.legs with minecraft:netherite_leggings[unbreakable={}]
 #execute as @s[tag=win] at @s run item replace entity @a[tag=ingame] armor.feet with minecraft:netherite_boots[unbreakable={}]
 
-execute as @s[tag=win] at @s run effect give @a[tag=ingame] speed 2 2 true
+execute as @s[tag=win] at @s run effect give @a[tag=ingame] speed 2 3 true
 
 execute as @s[tag=win] at @s run playsound minecraft:entity.zombie_villager.cure master @a ~ ~ ~ 1 2
 execute as @s[tag=win] at @s run playsound minecraft:item.trident.thunder master @a ~ ~ ~ 0.2 2

@@ -4,7 +4,7 @@ scoreboard players add @s sneakT 0
 #scoreboard players add @s[scores={sneakT=5..}] sneakT 1
 scoreboard players add @s[scores={shift=1..,sneakCool=0}] sneakT 1
 scoreboard players set @s[scores={shift=..0}] sneakT 0
-#attribute @s[scores={sneakT=5..}] minecraft:generic.knockback_resistance base set 1.0
+#attribute @s[scores={sneakT=5..}] minecraft:knockback_resistance base set 1.0
 scoreboard players set @s shift 0
 
 scoreboard players add @s sneakCool 0

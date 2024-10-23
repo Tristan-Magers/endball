@@ -1,11 +1,16 @@
 #
-attribute @s minecraft:generic.movement_speed base set 0.1
-attribute @s[scores={chargeLV=1..}] minecraft:generic.movement_speed base set 0.093
-attribute @s minecraft:player.entity_interaction_range base set 3.2
-attribute @s minecraft:generic.attack_knockback base set 0.05
+attribute @s minecraft:movement_speed base set 0.1
+attribute @s[scores={chargeLV=1..}] minecraft:movement_speed base set 0.09
+attribute @s[scores={stunned=1..}] minecraft:movement_speed base set 0.075
+attribute @s minecraft:entity_interaction_range base set 3.2
+attribute @s minecraft:attack_knockback base set 0.0
+attribute @s minecraft:sneaking_speed base set 0.64
+
+scoreboard players remove @s[scores={stunned=0..}] stunned 1
 
 #
-attribute @s minecraft:player.sneaking_speed base set 0.64
+scoreboard players remove @s[scores={bat_off=0..}] bat_off 1
+item replace entity @s[scores={bat_off=0}] hotbar.0 with wooden_hoe[item_name='{"text":" ","italic":false}',unbreakable={}]
 
 #
 execute at @s if block ~0.3 ~ ~ minecraft:light_blue_terracotta run tp @s ~-0.5 ~ ~
@@ -23,8 +28,8 @@ scoreboard players set @s[scores={clickPause=1..}] click 0
 scoreboard players remove @s clickPause 1
 
 #
-attribute @s minecraft:generic.attack_speed base set 1000
-attribute @s minecraft:generic.attack_damage base set 10
+attribute @s minecraft:attack_speed base set 1000
+attribute @s minecraft:attack_damage base set 10
 
 # lev while offstage
 effect give @s[y=-59,dy=-100,gamemode=adventure] levitation 1 7
@@ -72,18 +77,22 @@ scoreboard players set @s[scores={enderC=2..}] enderT 0
 
 # bed upgrade
 scoreboard players add @s bedcharge 1
-item replace entity @s[scores={bedcharge=60}] hotbar.2 with minecraft:gray_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
-item replace entity @s[scores={bedcharge=120}] hotbar.2 with minecraft:cyan_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
-item replace entity @s[scores={bedcharge=180}] hotbar.2 with minecraft:lime_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
-item replace entity @s[scores={bedcharge=320}] hotbar.2 with minecraft:yellow_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"generic.attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @s[scores={bedcharge=60}] hotbar.2 with minecraft:gray_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @s[scores={bedcharge=120}] hotbar.2 with minecraft:cyan_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @s[scores={bedcharge=180}] hotbar.2 with minecraft:lime_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
+item replace entity @s[scores={bedcharge=320}] hotbar.2 with minecraft:yellow_bed[item_name='{"italic":true,"text":"Spawn (right-click to teleport)"}',unbreakable={},attribute_modifiers=[{id:"attack_speed",type:"attack_speed",amount:100,operation:"add_value"}]]
 #clear @s[scores={bedcharge=1000..}] black_bed
 
 # shift hit
 function game:player/shift
 
 # bat use
-execute as @s[scores={click=0},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}},tag=charge_buffer] at @s run function game:player/charge
-execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] at @s run function game:player/charge
+#execute as @s[scores={click=0},nbt={SelectedItem:{id:"minecraft:breeze_rod"}},tag=started_charge] at @s run function game:player/charge
+#execute as @s[scores={click=1..,chargeLV=4..},nbt={SelectedItem:{id:"minecraft:breeze_rod"}},tag=started_charge] at @s run scoreboard players set @s chargeDelay -1
+#execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:breeze_rod"}},tag=!started_charge] at @s run function game:player/charge
+execute as @s[scores={click=0},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}},tag=started_charge] at @s run function game:player/charge
+execute as @s[scores={click=1..,chargeLV=4..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}},tag=started_charge] at @s run scoreboard players set @s chargeDelay -1
+execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}},tag=!started_charge] at @s run function game:player/charge
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:netherite_hoe"}}] at @s run function game:smash/hit
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:stone_hoe"}}] at @s run function game:smash/hit
 execute as @s[scores={click=1..},nbt={SelectedItem:{id:"minecraft:iron_hoe"}}] at @s run function game:smash/hit
@@ -100,7 +109,8 @@ scoreboard players set @s[scores={chargeDelay=..-1,chargeLV=20..}] netherHoe 1
 #title @s[scores={chargeDelay=..-1,chargeLV=4..}] actionbar [{"text":"!! CHARGED !!","color":"white"},{"text":"","color":"dark_gray"}]
 scoreboard players set @s[scores={chargeDelay=..-1}] chargeLV 0
 #title @s[scores={chargeDelay=-1,batLV=..1}] actionbar [{"text":"","color":"gray"},{"text":"","color":"dark_gray"}]
-execute unless entity @s[scores={chargeDelay=0..},nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] run tag @s remove charge_buffer
+execute unless entity @s[nbt={SelectedItem:{id:"minecraft:breeze_rod"}}] unless entity @s[nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] run tag @s remove charge_buffer
+execute unless entity @s[nbt={SelectedItem:{id:"minecraft:breeze_rod"}}] unless entity @s[nbt={SelectedItem:{id:"minecraft:wooden_hoe"}}] run tag @s remove started_charge
 
 # bed use
 function game:player/usebed

@@ -738,5 +738,23 @@
     },
     "done": true
   },
-  "DataVersion": 3955
+  "minecraft:recipes/misc/wind_charge": {
+    "criteria": {
+      "has_breeze_rod": "2024-10-22 16:27:21 -0600"
+    },
+    "done": true
+  },
+  "minecraft:recipes/combat/mace": {
+    "criteria": {
+      "has_breeze_rod": "2024-10-22 16:27:21 -0600"
+    },
+    "done": true
+  },
+  "minecraft:recipes/tools/red_bundle": {
+    "criteria": {
+      "has_red_dye": "2024-10-22 16:32:26 -0600"
+    },
+    "done": true
+  },
+  "DataVersion": 4080
 }

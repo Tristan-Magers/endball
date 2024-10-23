@@ -4,7 +4,7 @@ gamemode adventure @a
 team leave @a
 tag @a remove ingame
 
-tp @a -15.5 -39.0 -36.5 0 0
+tp @a -15.0 -39.0 -38.5 0 0
 
 setblock -16 -38 -29 minecraft:warped_button[facing=north] replace
 

@@ -9,7 +9,5 @@ execute as @e[tag=move] store result entity @s Motion[2] double .0062 run scoreb
 tag @e[tag=move,tag=smashed] add smashed2
 tag @e[tag=move] add smashed
 
-tag @e[tag=move] add smashed_hard
-
 tag @e[tag=det] add done
 kill @e[tag=det]
